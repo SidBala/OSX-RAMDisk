@@ -113,6 +113,16 @@ move_idea_cache()
    echo "idea.log.path=$USERRAMDISK/Idea/logs" >> /Applications/IntelliJ\ IDEA\ 14.app/Contents/bin/idea.properties
 }
 
+# Webstorm
+move_webstorm_cache()
+{
+   # make a backup of config - will need it when uninstalling
+   cp -f /Applications/WebStorm.app/Contents/bin/idea.properties /Applications/WebStorm.app/Contents/bin/idea.properties.back
+   # Idea will create those dirs
+   echo "idea.system.path=$USERRAMDISK/Idea" >> /Applications/WebStorm.app/Contents/bin/idea.properties
+   echo "idea.log.path=$USERRAMDISK/Idea/logs" >> /Applications/WebStorm.app/Contents/bin/idea.properties
+}
+
 # Intellij Idea
 move_ideace_cache()
 {
@@ -155,6 +165,7 @@ hide_ramdisk()
 # Let's close the apps we moving caches for in case they are running.
 close_app "IntelliJ Idea 14"
 close_app "IntelliJ Idea 14 CE"
+close_app "WebStorm"
 close_app "Google Chrome"
 close_app "Safari"
 close_app "iTunes"
@@ -165,6 +176,7 @@ move_chrome_cache
 move_safari_cache
 move_idea_cache
 move_ideace_cache
+move_webstorm_cache
 move_itunes_cache
 echo "All good - I have done my job"
 #
