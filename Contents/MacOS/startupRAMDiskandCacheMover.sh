@@ -14,7 +14,7 @@
 # The RAM amount you want to allocate for RAM disk. One of
 # 1024 2048 3072 4096 5120 6144
 # todo: set default value to 1/4 of RAM
-ramfs_size_mb=4096
+ramfs_size_mb=8192
 mount_point=/Volumes/ramdisk
 ramfs_size_sectors=$((${ramfs_size_mb}*1024*1024/512))
 ramdisk_device=`hdid -nomount ram://${ramfs_size_sectors}`
@@ -47,7 +47,10 @@ mk_ram_disk()
 
     # Hide RAM disk - we don't really need it to be annoiyng in finder.
     # comment out should you need it.
-    hide_ramdisk
+    # hide_ramdisk
+
+    mkdir -pv /Users/$USER/Scratch
+    ln -v -s ${USERRAMDISK}/Scratch ~
 }
 
 # ------------------------------------------------------
@@ -159,6 +162,18 @@ hide_ramdisk()
     /usr/bin/chflags hidden ${mount_point}
 }
 
+copy_gits_dir()
+{
+	mkdir -pv ${USERRAMDISK}/Scratch/Gits
+	cp -r $USER/Gits ${USERRAMDISK}/Scratch/Gits
+}
+
+copy_tmp_dir()
+{
+	mkdir -pv ${USERRAMDISK}/Scratch/tmp
+	cp -r $USER/tmp ${USERRAMDISK}/Scratch/tmp
+}
+
 # -----------------------------------------------------------------------------------
 # The entry point
 # -----------------------------------------------------------------------------------
@@ -178,6 +193,8 @@ move_idea_cache
 move_ideace_cache
 move_webstorm_cache
 move_itunes_cache
+copy_gits_dir
+copy_tmp_dir
 echo "All good - I have done my job"
 #
 # open_app "Google Chrome"
