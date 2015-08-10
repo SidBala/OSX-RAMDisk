@@ -14,7 +14,7 @@
 # The RAM amount you want to allocate for RAM disk. One of
 # 1024 2048 3072 4096 5120 6144
 # todo: set default value to 1/4 of RAM
-ramfs_size_mb=8192
+ramfs_size_mb=12288
 mount_point=/Volumes/ramdisk
 ramfs_size_sectors=$((${ramfs_size_mb}*1024*1024/512))
 ramdisk_device=`hdid -nomount ram://${ramfs_size_sectors}`
@@ -165,13 +165,13 @@ hide_ramdisk()
 copy_gits_dir()
 {
 	mkdir -pv ${USERRAMDISK}/Scratch/Gits
-	cp -r $USER/Gits ${USERRAMDISK}/Scratch/Gits
+	cp -r /Users/$USER/Gits ${USERRAMDISK}/Scratch
 }
 
 copy_tmp_dir()
 {
 	mkdir -pv ${USERRAMDISK}/Scratch/tmp
-	cp -r $USER/tmp ${USERRAMDISK}/Scratch/tmp
+	cp -r /Users/$USER/tmp ${USERRAMDISK}/Scratch
 }
 
 # -----------------------------------------------------------------------------------
