@@ -193,8 +193,8 @@ move_idea_cache
 move_ideace_cache
 move_webstorm_cache
 move_itunes_cache
-copy_gits_dir
-copy_tmp_dir
+# copy_gits_dir
+# copy_tmp_dir
 echo "All good - I have done my job"
 #
 # open_app "Google Chrome"
